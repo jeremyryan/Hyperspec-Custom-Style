@@ -1,4 +1,4 @@
 Hyperspec-Custom-Style
 ======================
 
-Common Lisp Hyperspec custom style
+A custom stylesheet to be used with Stylish to make the Common Lisp Hyperspec more readable.

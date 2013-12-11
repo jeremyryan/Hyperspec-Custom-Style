@@ -13,19 +13,15 @@
     script.src = '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js';
     
     script.onload = function() {
-        var definitions = $('a[rel=DEFINITION][href^=26_glo_], a[rel=DEFINITION][href^=#]');
+        var $definitions = $('a[rel=DEFINITION][href^=26_glo_], a[rel=DEFINITION][href^=#]');
         var glossaryTerms = {};
         
-        definitions.each(function(i, a) {
+        $definitions.each(function(i, a) {
             var href = a.href;
             var key  = href.substring(href.indexOf('#')+1, href.length);
             $(a).data('key', key);
             glossaryTerms[key] = null;
         });
-
-        function displayDefinition(def) {
-            console.dir(def);
-        }
 
         $.post('/lisp', 
                { 'd': Object.keys(glossaryTerms) },
@@ -54,7 +50,7 @@
             .appendTo('body')
             .hide();
         
-        definitions.hover(function(evt) {
+        $definitions.hover(function(evt) {
             var key = $(evt.delegateTarget).data('key');
             var def = glossaryTerms[key];
             

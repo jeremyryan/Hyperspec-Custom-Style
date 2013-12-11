@@ -6,16 +6,19 @@
 
 (defvar *db-location* "/home/jmr/github/Hyperspec-Custom-Style/hyperspec.sqlite")
 
-(defvar *db* (sqlite:connect *db-location*))
+(defvar *db*)
+(setf *db* (sqlite:connect *db-location*))
 
-(defvar *prepared-stmt* (sqlite:prepare-statement *db*
-						  "select 
+(defvar *prepared-stmt*)
+
+(setf *prepared-stmt* (sqlite:prepare-statement *db*
+						"select 
   key,
   term,
   definition
 from glossary
 where key = ?"
-						  ))
+						))
 
 
 

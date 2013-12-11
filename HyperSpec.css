@@ -1,106 +1,128 @@
-html {
-    background: #b9eeff;
-    padding: 0;
-    margin: 0;
+@namespace url(http://www.w3.org/1999/xhtml);
+
+@-moz-document url-prefix("http://www.lispworks.com/documentation/HyperSpec/"),
+    url-prefix("http://localhost/HyperSpec/") {
+
+    html {
+        background: #b9eeff;
+        padding: 0;
+        margin: 0;
+        
+    }   
     
-}   
+    body {  
+        background: white;
+        padding: 10px 20px;
+        width: 80%;
+        margin: 5px auto;
+        height: auto;
+        color: #31418c;
+        font-family: sans-serif;
+        font-size: 0.9em;
+        border-radius: 8px;
+    }
+    
+    h2 {
+        color: #31418c;
+        font-size: 1.1em;
+        padding: 5px;
+        background: linear-gradient(45deg, #80e1ff, white 50%);
+    }
+    
+    a > i {
+        font-style: normal;
+    }
+    
+    a, a:link {
+        color: #A65800 !important;
+        text-decoration: none !important;
+    }
+    
+    a:hover {
+        text-decoration: underline !important;
+    }
+    
+    a[name]:hover {
+        text-decoration: none !important;
+    }
+    
+    a:visited {
+        color: #BF7C30 !important;
+    }
+    
+    p > b {
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 0.9em;
+    }
+    
+    pre {
+        background: #31418c;
+        color: #80e1ff;
+        padding: 10px;
+        border: 1px solid #80e1ff;
+        border-radius: 8px;
+        font-family: monospace;
+        font-size: 1.2em;
+    }
+    
+    pre a:link, pre a {
+        color: #ffbf7b !important; 
+    }
+    
+    a > img {
+        margin-right: 0.5em;
+    }
 
-body {  
-    background: #eeffff;
-    padding: 10px;
-    width: 80%;
-    margin: 0 auto;
-    height: auto;
-    color: #31418c;
-    font-family: sans-serif;
-    font-size: 1em;
+    p {
+        /*border: 1px solid blue;*/
+    }
+    
+    ul, ol {
+        list-style: none !important;  
+    }
+    
+    ol {
+        counter-reset: n;
+    }
+    
+    ul li:before {
+        font-size: 0.85em;
+        vertical-align: middle;
+        content: "(λ) ";
+        color: #BF7C30;
+    }
+    
+    ol li:before {
+        counter-increment: n;
+        content: "(" counter(n) ") ";
+    }
+    
+    hr {
+        border-bottom: 2px dashed #b9eeff;
+        text-align: center;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+    
+    tt {
+        font-family: monospace;
+        font-size: 1.2em;
+    }
+    
+    a[rel=COPYRIGHT] {
+        display: block;
+        margin-top: 30px;
+    }
+    
+    blockquote {
+        background: #b9eeff;
+        border-radius: 8px;
+        padding: 5px;
+        text-align: center;
+    }
+
+    a[name] {
+        color: #31418c !important;
+    }
 }
-
-h2 {
-    font-size: 1em;
-}
-
-a > i {
-    font-style: normal;
-}
-
-a, a:link {
-    color: #A65800 !important;
-    text-decoration: none !important;
-}
-
-a:hover {
-    text-decoration: underline !important;
-}
-
-a:visited {
-    color: #BF7C30 !important;
-}
-
-p > b {
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 0.9em;
-}
-
-pre {
-    background: #31418c;
-    color: #80e1ff;
-    padding: 10px;
-    border: 1px solid #80e1ff;
-    border-radius: 8px;
-    font-family: monospace;
-    font-size: 1.2em;
-}
-
-pre a:link, pre a {
-    color: #ffbf7b !important; 
-}
-
-a > img {
-    margin-right: 0.5em;
-}
-
-p {
-/*border: 1px solid blue;*/
-}
-
-ul, ol {
-    list-style: none !important;  
-}
-
-ol {
-    counter-reset: n;
-}
-
-ul li:before {
-    font-size: 0.85em;
-    vertical-align: middle;
-    content: "(λ) ";
-    color: #BF7C30;
-}
-
-ol li:before {
-    counter-increment: n;
-    content: "(" counter(n) ") ";
-}
-
-hr {
-    border: none;
-    text-align: center;
-}
-
-tt {
-    font-family: monospace;
-    font-size: 1.2em;
-}
-
-a[rel=NAVIGATOR], a[rel=TOC], a[rel=INDEX], a[rel=INDEX], a[rel=GLOSSARY], a[href="../Front/X3J13Iss.htm"] {
-    margin: auto;
-}
-
-a[rel=COPYRIGHT] {
-    display: block;
-    margin-top: 30px;
-}
-

@@ -49,23 +49,5 @@ where key = ?"
 (setf clack-test-server
   (clack:clackup (make-instance '<test-app>)
 		 :server :apache
-		 :port 4040)) 
+		 :port 4040))
 
-
-(defun generate-html (env)
-  (let ((query-params (split-uri-query-string 
-		       (getf env :http-posted-content))))
-    (who:with-html-output-to-string (s)
-      (:html 
-       (:head 
-	(:title "test")
-	#|
-	(:link :rel "stylesheet"
-	:type "text/css"
-	:href "resources/styles.css"))
-	|#
-	(:body 
-	 (:div 
-	  (who:fmt "<p>~A</p>" query-params)
-	  (:table 
-	   (who:fmt "~{<tr><td>~A:</td> <td>~A</td></tr>~}" env)))))))))

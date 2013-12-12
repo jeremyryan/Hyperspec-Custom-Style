@@ -17,9 +17,10 @@
         margin: 5px auto;
         height: auto;
         color: #31418c;
-        font-family: sans-serif;
+        font-family: "Bitstream vera sens", Verdana, Georgia, sans-serif;
         font-size: 0.9em;
         border-radius: 8px;
+        
     }
     
     h2 {
@@ -100,6 +101,7 @@
     
     hr {
         border-bottom: 2px dashed #b9eeff;
+        border-top: none;
         text-align: center;
         margin-top: 15px;
         margin-bottom: 15px;
@@ -113,6 +115,11 @@
     a[rel=COPYRIGHT] {
         display: block;
         margin-top: 30px;
+    }
+
+    li a[rel=COPYRIGHT] {
+        display: inline;
+        margin-top: 0;
     }
     
     blockquote {

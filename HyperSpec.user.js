@@ -3,17 +3,16 @@
 // @namespace   HyperSpec
 // @description HyperSpec
 // @include     http://www.lispworks.com/documentation/HyperSpec/*
-// @include     http://localhost/HyperSpec/*
+// @include     http://localhost/jmr/hyperspec/*
 // @version     1
 // @grant       none
 // ==/UserScript==
 
 (function() {
-    var script = document.createElement('script');
-    script.src = '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js';
-    
-    script.onload = function() {
-        var $definitions = $('a[rel=DEFINITION][href^=26_glo_], a[rel=DEFINITION][href^=#]');
+    var serverUrl = 'http://localhost:8899';
+    function init() {
+        var $definitions =
+	    $('a[rel=DEFINITION][href^=26_glo_], a[rel=DEFINITION][href^=#]');
         var glossaryTerms = {};
         
         $definitions.each(function(i, a) {
@@ -23,17 +22,15 @@
             glossaryTerms[key] = null;
         });
 
-        $.post('/lisp', 
-               { 'd': Object.keys(glossaryTerms) },
+        $.post(serverUrl, { 'd': Object.keys(glossaryTerms) },
                function(response) {
-                    if (!response) return;
-                    for (var i = 0, l = response.length; i < l; i++) {
+                   if (!response) return;
+                   for (var i = 0, l = response.length; i < l; i++) {
                         var def = response[i];
-                        var key = def[0];
-                        var defDisplay = def[2];
-                        glossaryTerms[key] = defDisplay;
-                    }
-                
+                       var key = def[0];
+                       var defDisplay = def[2];
+                       glossaryTerms[key] = defDisplay;
+                   }
                },
                'json');
         
@@ -66,7 +63,19 @@
         function(evt) {
             $termDisplayDiv.hide();
         });
-    };
+    }
+
+    var script = document.createElement('script');
+    script.src = '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js';
     
-    document.body.appendChild(script);
+    script.onload = function() {
+	var jQUiUrl = '//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js';
+	$.getScript(jQUiUrl, function() { 
+	    $(init); 
+	    $('head').append($('<link rel="stylesheet" type="text/css" '
+			       + 'href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css"></link>'));
+	});
+    };
+
+    document.body.appendChild(script);    
 }());

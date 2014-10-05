@@ -1,7 +1,6 @@
 @namespace url(http://www.w3.org/1999/xhtml);
 
-@-moz-document url-prefix("http://www.lispworks.com/documentation/HyperSpec/"),
-    url-prefix("http://localhost/jmr/hyperspec/") {
+@-moz-document url-prefix("http://www.lispworks.com/documentation/HyperSpec/") {
 
     html {
         background: #b9eeff;

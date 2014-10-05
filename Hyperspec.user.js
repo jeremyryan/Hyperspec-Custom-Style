@@ -1,1 +1,0 @@
-/home/jmr/.mozilla/firefox/ha8a1qqi.default/gm_scripts/Hyperspec/Hyperspec.user.js

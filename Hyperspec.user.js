@@ -1,9 +1,8 @@
 // ==UserScript==
 // @name        HyperSpec
 // @namespace   HyperSpec
-// @description HyperSpec
+// @description Adds glossary definitions as tooltips to linked glossary terms.
 // @include     http://www.lispworks.com/documentation/HyperSpec/*
-// @include     http://localhost/jmr/hyperspec/*
 // @version     1
 // @grant       none
 // ==/UserScript==
@@ -15,6 +14,7 @@
              elem.firstChild && elem.firstChild.nodeName === 'A';
     }
 
+    // Grab all the glossary terms from a page and store them in localStorage
     function loadDefs(href) {
         return $.get(href, 
             function(html) {
@@ -31,6 +31,7 @@
             'html');
     }
 
+    // Add a definition, or grab the page on which it is defined if it hasn't yet been loaded
     function addDef($a, promise) {
         var result = promise;
         var href = $a.attr('href');
@@ -46,10 +47,11 @@
                     return this;
                 });
             });
-        }
+       } 
         return result;
     }
 
+    // Add definitions as tooltips to all linked glossary terms
     function init() {
         var $anchors =
 	        $('a[rel=DEFINITION][href^=26_glo_], a[rel=DEFINITION][href^=#]');
@@ -60,14 +62,16 @@
         $(document).tooltip();
     }
 
+    //  Load jQuery and jQuery UI
     var script = document.createElement('script');
     script.src = '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js';
     script.type = 'text/javascript';
     script.onload = function() {
-        var jQUiUrl = '//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js';
+        var jquiUrl = '//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js';
         $('head').append($('<link rel="stylesheet" type="text/css" '
-                   + 'href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css"></link>'));
-        $.getScript(jQUiUrl, function() { $(init); });
+			   + 'href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css">'
+			   + '</link>'));
+        $.getScript(jquiUrl, function() { $(init); });
     };
 
     document.body.appendChild(script);    

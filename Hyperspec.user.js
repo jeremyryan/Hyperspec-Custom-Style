@@ -2,7 +2,7 @@
 // ==UserScript==
 // @name        HyperSpec
 // @namespace   HyperSpec
-// @description Adds glossary definitions as tooltips to linked glossary terms, and keyboard shortcuts to navigation to the major sections of the HyperSpec.
+// @description Adds glossary definitions as tooltips to linked glossary terms, and keyboard shortcuts for navigation to the major sections of the HyperSpec.
 // @include     http://www.lispworks.com/documentation/HyperSpec/*
 // @include     http://localhost/jmr/hyperspec/*
 // @version     1

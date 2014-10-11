@@ -1,8 +1,10 @@
+
 // ==UserScript==
 // @name        HyperSpec
 // @namespace   HyperSpec
-// @description Adds glossary definitions as tooltips to linked glossary terms.
+// @description Adds glossary definitions as tooltips to linked glossary terms, and keyboard shortcuts to navigation to the major sections of the HyperSpec.
 // @include     http://www.lispworks.com/documentation/HyperSpec/*
+// @include     http://localhost/jmr/hyperspec/*
 // @version     1
 // @grant       none
 // ==/UserScript==
@@ -14,7 +16,7 @@
              elem.firstChild && elem.firstChild.nodeName === 'A';
     }
 
-    // Grab all the glossary terms from a page and store them in localStorage
+    // Grab all the glossary terms from a page and store them in localStorage 
     function loadDefs(href) {
         return $.get(href, 
             function(html) {
@@ -51,15 +53,31 @@
         return result;
     }
 
+    // Maps characters to urls
+    var charToUrlMap = {
+	I: '../Front/index.htm', // Top level index
+	L: '../Front/Hilights.htm', // Selected Highlights
+	C: '../Front/Contents.htm', // Chapter Index
+	M: '../Front/X_Master.htm', // Master Index
+	S: '../Front/X_Symbol.htm', // Symbol Index
+	G: '../Body/26_a.htm', // Glossary
+	X: '../Front/X3J13Iss.htm', // X3J13 Issue Index
+	E: '../Front/Help.htm' // Help, Legalese, Trivia, etc.
+    };
+
     // Add definitions as tooltips to all linked glossary terms
     function init() {
         var $anchors =
-	        $('a[rel=DEFINITION][href^=26_glo_], a[rel=DEFINITION][href^=#]');
+	    $('a[rel=DEFINITION][href^=26_glo_], a[rel=DEFINITION][href^=#]');
         var promise = $.Deferred().resolve().promise();
         for (; $anchors.length > 0; $anchors = $anchors.slice(1)) {
             promise = addDef($anchors.first(), promise);
         }
-        $(document).tooltip();
+        $(document).tooltip().on('keyup', function(e) { 
+	    if (!(e.altKey && e.ctrlKey)) return;
+	    var url = charToUrlMap[String.fromCharCode(e.keyCode)];
+	    if (url) window.location = url;
+	});
     }
 
     //  Load jQuery and jQuery UI
@@ -67,11 +85,11 @@
     script.src = '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js';
     script.type = 'text/javascript';
     script.onload = function() {
-        var jquiUrl = '//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js';
         $('head').append($('<link rel="stylesheet" type="text/css" '
 			   + 'href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css">'
 			   + '</link>'));
-        $.getScript(jquiUrl, function() { $(init); });
+        $.getScript('//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js',
+		    function() { $(init); });
     };
 
     document.body.appendChild(script);    

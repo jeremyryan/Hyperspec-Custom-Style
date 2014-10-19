@@ -10,13 +10,13 @@
 // ==/UserScript==
 
 (function() {
-   
+    // Is this a paragraph containing a glossary definition?
     function isDefPara(elem) {
         return elem.nodeName === 'P' &&
              elem.firstChild && elem.firstChild.nodeName === 'A';
     }
 
-    // Grab all the glossary terms from a page and store them in localStorage 
+    // Grab all the glossary terms from a page and store them in localStorage
     function loadDefs(href) {
         return $.get(href, 
             function(html) {
@@ -67,8 +67,13 @@
 
     // Add definitions as tooltips to all linked glossary terms
     function init() {
-        var $anchors =
-	    $('a[rel=DEFINITION][href^=26_glo_], a[rel=DEFINITION][href^=#]');
+	// set the page specific keys
+	$.extend(charToUrlMap, {
+	    J: $('a[rel=PREV]').attr('href'),
+	    K: $('a[rel=UP]').attr('href'),
+	    L: $('a[rel=NEXT]').attr('href')
+	});
+        var $anchors = $('a[rel=DEFINITION][href^=26_glo_], a[rel=DEFINITION][href^=#]');
         var promise = $.Deferred().resolve().promise();
         for (; $anchors.length > 0; $anchors = $anchors.slice(1)) {
             promise = addDef($anchors.first(), promise);

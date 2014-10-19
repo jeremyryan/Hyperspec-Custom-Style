@@ -14,3 +14,7 @@ Contains the following parts:
   * G: Glossary
   * X: X3J13 Issue Index
   * E: Help, Legalese, Trivia, etc.
+  * J: Go to the previous page
+  * K: Move up one node in the page hierarchy
+  * L: Go to the next page
+  

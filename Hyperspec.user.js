@@ -75,9 +75,9 @@
 	});
         var $anchors = $('a[rel=DEFINITION][href^=26_glo_], a[rel=DEFINITION][href^=#]');
         var promise = $.Deferred().resolve().promise();
-        for (; $anchors.length > 0; $anchors = $anchors.slice(1)) {
-            promise = addDef($anchors.first(), promise);
-        }
+	$anchors.each(function(idx, anchor) { 
+	    promise = addDef($(anchor), promise);
+	});
         $(document).tooltip().on('keyup', function(e) { 
 	    if (!(e.altKey && e.ctrlKey)) return;
 	    var url = charToUrlMap[String.fromCharCode(e.keyCode)];
@@ -85,7 +85,7 @@
 	});
     }
 
-    //  Load jQuery and jQuery UI
+    //  Bootstrap by loading jQuery and jQuery UI
     var script = document.createElement('script');
     script.src = '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js';
     script.type = 'text/javascript';

@@ -6,7 +6,8 @@
         background: #b9eeff;
         padding: 0;
         margin: 0;
-        
+        height: 100%;
+        width: 100%;
     }   
     
     body {  
@@ -19,7 +20,6 @@
         font-family: "Bitstream vera sans", Verdana, Georgia, sans-serif;
         font-size: 0.9em;
         border-radius: 8px;
-        
     }
     
     h2 {
@@ -72,10 +72,6 @@
     
     a > img {
         margin-right: 0.5em;
-    }
-
-    p {
-        /*border: 1px solid blue;*/
     }
     
     ul, ol {
@@ -130,5 +126,27 @@
 
     a[name] {
         color: #31418c !important;
+    }
+
+    #menu {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        display: none;
+        background: #b9eeff;
+        border-radius: 8px;
+        color: #31418c;
+        border: 1px #31418c solid;
+        padding: 20px;
+    }
+        
+    #menu ul {
+        list-style-position: inside;
+        padding: 0;
+        margin: 0;
+    }
+        
+    #menu li:before {
+        content: "";
     }
 }

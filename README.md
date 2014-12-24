@@ -17,4 +17,5 @@ Contains the following parts:
   * J: Go to the previous page
   * K: Move up one node in the page hierarchy
   * L: Go to the next page
-  
+
+A listing of all keyboard-shortcuts can be brought up by holding down Ctl+Alt.

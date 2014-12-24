@@ -82,6 +82,7 @@
             $menuList.append($('<li></li>').text(key + ': ' + map.display));
         });
         $('body').append($menuDiv.append($menuList));
+        $menuDiv.hide();
         $anchors.each(function(idx, anchor) { 
             promise = addDef($(anchor), promise);
         });
@@ -91,11 +92,11 @@
                     urlMap = charToUrlMap[key]; 
                 if (urlMap && urlMap.url) window.location = urlMap.url;
             } else {
-                $menuDiv.css('display', 'none');
+                $menuDiv.fadeOut();
             }
         }).on('keydown', function(e) {
             if (e.altKey && e.ctrlKey) {
-                $menuDiv.css('display', 'block');
+                $menuDiv.fadeIn();
             } 
         });
     }

@@ -82,7 +82,7 @@
             $menuList.append($('<li></li>').text(key + ': ' + map.display));
         });
         $('body').append($menuDiv.append($menuList));
-        $menuDiv.hide();
+        $menuDiv.addClass('shadowed').hide();
         $anchors.each(function(idx, anchor) { 
             promise = addDef($(anchor), promise);
         });

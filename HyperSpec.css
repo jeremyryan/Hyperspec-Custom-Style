@@ -132,7 +132,7 @@
         position: fixed;
         top: 10px;
         left: 10px;
-        background: #b9eeff;
+        background: white;
         border-radius: 8px;
         color: #31418c;
         border: 1px #31418c solid;
@@ -147,5 +147,9 @@
         
     #menu li:before {
         content: "";
+    }
+
+    .shadowed {
+        box-shadow: 0 0 1em #31418c;
     }
 }
